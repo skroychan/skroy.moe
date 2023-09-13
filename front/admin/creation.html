@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>my creation</title>
+        <link rel="stylesheet" href="../layout.css">
+        <link rel="stylesheet" href="admin.css">
+        <link rel="stylesheet" href="creation.css">
+        <script src="creation.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <input id="title" type="text" name="title"/>
+            <textarea id="content" name="content"></textarea>
+            <div class="inline-wrapper">
+                <input id="file" type="text" name="file" placeholder="/file/path"/>
+                <input id="save" type="button" value="save"/>
+            </div>
+
+            <form id="publish" method="POST" style="display: none;">
+                <input type="submit" value="💜 show it to the world 💜"/>
+            </form>
+            <input id="unpublish" type="button" value="💔 take it away 💔" style="display: none;"/>
+        </div>
+    </body>
+</html>
