@@ -13,12 +13,12 @@ function load() {
 
         if (creation['title']) {
             document.title = creation['title'];
-            titleBlock.innerHTML = creation['title'];
+            titleBlock.innerHTML = creation['title'].replace(/\n/g, '<br>');;
         } else {
             titleBlock.style.display = 'none';
         }
         
-        contentBlock.innerHTML = creation['content'];
+        contentBlock.innerHTML = creation['content'].replace(/\n/g, '<br>');
     });
 }
 

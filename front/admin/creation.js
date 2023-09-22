@@ -84,4 +84,21 @@ async function getCreation(id) {
     return null;
 }
 
+function preview() {
+    const preview = document.getElementById('preview');
+    const content = document.getElementById('content');
+    const previewButton = document.getElementById('preview-button');
+
+    if (preview.style.display == 'none') {
+        previewButton.value = 'edit';
+        preview.innerHTML = content.value.replace(/\n/g, '<br>');
+        content.style.display = 'none';
+        preview.style.display = 'block';
+    } else {
+        previewButton.value = 'preview';
+        content.style.display = 'block';
+        preview.style.display = 'none';
+    }
+}
+
 window.onload = load;

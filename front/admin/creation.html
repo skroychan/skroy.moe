@@ -11,9 +11,11 @@
         <div class="container">
             <input id="title" type="text" name="title"/>
             <textarea id="content" name="content"></textarea>
+            <div id="preview" style="display:none;"></div>
+            
             <div class="inline-wrapper">
-                <input id="file" type="text" name="file" placeholder="/file/path"/>
-                <input id="save" type="button" value="save"/>
+                <input id="preview-button" type="button" value="preview" onclick="preview();"/>
+            <input id="save" type="button" value="update"/>
             </div>
 
             <form id="publish" method="POST" style="display: none;">

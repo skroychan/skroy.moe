@@ -6,11 +6,13 @@
     display: flex;
 }
 
-input, textarea {
-    display: block;
-    width: 100%;
+input, textarea, #preview {
     margin-top: 15px;
     padding: 15px 25px;
+}
+
+input, textarea {
+    width: 100%;
 }
 
 textarea {
@@ -22,9 +24,11 @@ textarea {
     font-weight: bold;
 }
 
-#save {
-    width: 200px;
-    margin-left: 15px;
+#preview {
+    max-height: 450px;
+    border: 1px solid #999999;
+    background-color: #ffffff;
+    overflow: auto;
 }
 
 @media only screen and (min-width: 768px) {
