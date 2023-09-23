@@ -41,7 +41,7 @@ def publish(id):
         return 'Not found', 404
     
     creation = get_model(result)
-    creation.is_public = True;
+    creation.is_public = True
     creation.published_date = datetime.now()
 
     db.session.add(creation)
@@ -59,7 +59,7 @@ def unpublish(id):
         return 'Not found', 404
     
     creation = get_model(result)
-    creation.is_public = False;
+    creation.is_public = False
     creation.published_date = None
 
     db.session.add(creation)
@@ -77,7 +77,7 @@ def save(id):
         return 'Not found', 404
     
     creation = get_model(result)
-    creation.title = request.json['title'];
+    creation.title = request.json['title']
     creation.content = request.json['content']
 
     db.session.add(creation)
