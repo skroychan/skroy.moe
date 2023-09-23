@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import Blueprint, jsonify, redirect, request
 
 from db import db
-from index.entities import Creation
+from index.entities import Creation, Tag
 
 
 admin_blueprint = Blueprint('admin', __name__)
@@ -79,11 +79,32 @@ def save(id):
     creation = get_model(result)
     creation.title = request.json['title']
     creation.content = request.json['content']
+    creation.tags = get_or_create_tags(request.json['tags'])
 
     db.session.add(creation)
     db.session.commit()
 
     return 'Success', 200
+
+
+def get_or_create_tags(strings):
+    query = db.select(Tag).where(Tag.name.in_(strings))
+    query_result = db.session.execute(query).all()
+    tags = get_models(query_result)
+    found_tags = {tag.name : tag for tag in tags}
+
+    result = []
+    for string in strings:
+        if string in found_tags:
+            result.append(found_tags[string])
+        else:
+            result.append(Tag(name=string))
+
+    return result
+
+
+def get_models(obj):
+    return [row[0] for row in obj]
 
 
 def get_model(obj):    

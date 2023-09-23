@@ -9,6 +9,7 @@ function load() {
 
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
+    const tagInput = document.getElementById('tags');
 
     getCreation(creation_id).then(creation => {
         if (!creation) {
@@ -22,6 +23,7 @@ function load() {
         
         titleInput.value = creation['title'];
         contentInput.value = creation['content'];
+        tagInput.value = creation['tags'].map(tag => tag['name']).join(' ');
 
         const saveButton = document.getElementById('save');
         saveButton.onclick = function() { save(creation_id); };
@@ -43,10 +45,12 @@ function load() {
 function save(id) {
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
+    const tagInput = document.getElementById('tags');
 
     const creation = {
         title: titleInput.value,
-        content: contentInput.value
+        content: contentInput.value,
+        tags: tagInput.value.split(' ').filter(tag => tag !== '')
     };
 
     fetch(`/save/${id}`, {
