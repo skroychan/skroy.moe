@@ -7,6 +7,8 @@ function load() {
 
     getCreation(creation_id).then(creation => {
         if (!creation || !creation['is_public']) {
+            document.title = '立入禁止';
+            titleBlock.style.display = 'none';
             contentBlock.textContent = 'you requested in the wrong neighborhood';
             return;
         }
