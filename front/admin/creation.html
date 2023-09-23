@@ -2,10 +2,10 @@
 <html>
     <head>
         <title>my creation</title>
-        <link rel="stylesheet" href="../layout.css">
+        <link rel="stylesheet" href="static/layout.css">
         <link rel="stylesheet" href="admin.css">
         <link rel="stylesheet" href="creation.css">
-        <script src="creation.js"></script>
+        <script type="module" src="creation.js"></script>
     </head>
     <body>
         <div class="container">
@@ -14,14 +14,12 @@
             <div id="preview" style="display:none;"></div>
             
             <div class="inline-wrapper">
-                <input id="preview-button" type="button" value="preview" onclick="preview();"/>
+                <input id="preview-button" type="button" value="preview"/>
             <input id="save" type="button" value="update"/>
             </div>
 
-            <form id="publish" method="POST" style="display: none;">
-                <input type="submit" value="💜 show it to the world 💜"/>
-            </form>
-            <input id="unpublish" type="button" value="💔 take it away 💔" style="display: none;"/>
+            <input id="publish" type="button" value="💜 show it to the world 💜" style="display:none;"/>
+            <input id="unpublish" type="button" value="💔 take it away 💔" style="display:none;"/>
         </div>
     </body>
 </html>

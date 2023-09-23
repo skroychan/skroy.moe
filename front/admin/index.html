@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>personal space</title>
-        <link rel="stylesheet" href="../layout.css">
+        <link rel="stylesheet" href="static/layout.css">
         <link rel="stylesheet" href="admin.css">
         <link rel="stylesheet" href="creation.css">
     </head>
@@ -11,9 +11,9 @@
             hello beautiful
         </div>
         <div class="container">
-            <form action="/admin/create" method="POST">
-                <input type="text" name="title"/>
-                <textarea name="content"></textarea>
+            <form action="/create" method="POST">
+                <input id="title" type="text" name="title"/>
+                <textarea id="content" name="content"></textarea>
                 <input type="submit" value="💜 make something new 💜"/>
             </form>
         </div>

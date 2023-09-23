@@ -25,7 +25,7 @@ textarea {
 }
 
 #preview {
-    max-height: 450px;
+    height: 450px;
     border: 1px solid #999999;
     background-color: #ffffff;
     overflow: auto;

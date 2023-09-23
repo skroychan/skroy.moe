@@ -1,5 +1,3 @@
-from collections.abc import Sequence
-
 from flask import Blueprint, jsonify
 
 from db import db
@@ -26,13 +24,14 @@ def get_creation(id):
 def latest():
     query = db.select(Creation).where(Creation.is_public).order_by(Creation.published_date.desc()).limit(50)
     result = db.session.execute(query).all()
-    creations = get_model(result)
+    creations = get_models(result)
 
     return jsonify(creations);
 
 
-def get_model(obj):
-    if isinstance(obj, Sequence):
-        return [row[0] for row in obj]
-    
+def get_models(obj):
+    return [row[0] for row in obj]
+
+
+def get_model(obj):    
     return obj[0]

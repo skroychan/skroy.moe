@@ -1,12 +1,25 @@
 from datetime import datetime
 
-from flask import Blueprint, redirect, request
+from flask import Blueprint, jsonify, redirect, request
 
 from db import db
 from index.entities import Creation
 
 
 admin_blueprint = Blueprint('admin', __name__)
+
+
+@admin_blueprint.route('/creation/get/<id>', methods=['GET'])
+def get_creation(id):    
+    query = db.select(Creation).where(Creation.id==id)
+    result = db.session.execute(query).one_or_none()
+    
+    if not result:
+        return 'Not found', 404
+    
+    creation = get_model(result)
+
+    return jsonify(creation);
 
 
 @admin_blueprint.route('/create', methods=['POST'])
@@ -16,7 +29,7 @@ def create():
     db.session.add(creation)
     db.session.commit()
 
-    return redirect(f'/admin/creation.html?id={creation.id}')
+    return redirect(f'/creation.html?id={creation.id}')
 
 
 @admin_blueprint.route('/publish/<id>', methods=['POST'])
@@ -34,7 +47,7 @@ def publish(id):
     db.session.add(creation)
     db.session.commit()
 
-    return redirect(f'/creation.html?id={creation.id}')
+    return 'Success', 200
 
 
 @admin_blueprint.route('/unpublish/<id>', methods=['POST'])
@@ -66,7 +79,6 @@ def save(id):
     creation = get_model(result)
     creation.title = request.json['title'];
     creation.content = request.json['content']
-    creation.file_path = request.json['file_path']
 
     db.session.add(creation)
     db.session.commit()
@@ -74,5 +86,5 @@ def save(id):
     return 'Success', 200
 
 
-def get_model(obj):
+def get_model(obj):    
     return obj[0]

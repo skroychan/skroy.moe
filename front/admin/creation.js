@@ -1,10 +1,14 @@
+import { getCreation } from '../static/creation.js';
+
 function load() {
+    const previewButton = document.getElementById('preview-button');
+    previewButton.addEventListener("click", preview);
+
     const urlParams = new URLSearchParams(window.location.search);
     const creation_id = urlParams.get('id');
 
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
-    const fileInput = document.getElementById('file');
 
     getCreation(creation_id).then(creation => {
         if (!creation) {
@@ -18,13 +22,12 @@ function load() {
         
         titleInput.value = creation['title'];
         contentInput.value = creation['content'];
-        fileInput.value = creation['file_path'];
 
         const saveButton = document.getElementById('save');
         saveButton.onclick = function() { save(creation_id); };
 
-        const publishForm = document.getElementById('publish');
-        publishForm.action = `/admin/publish/${creation_id}`;
+        const publishButton = document.getElementById('publish');
+        publishButton.onclick = function() { publish(creation_id); };
 
         const unpublishButton = document.getElementById('unpublish');
         unpublishButton.onclick = function() { unpublish(creation_id); };
@@ -32,7 +35,7 @@ function load() {
         if (creation['is_public']) {
             unpublishButton.style.display = 'block';
         } else {
-            publishForm.style.display = 'block';
+            publishButton.style.display = 'block';
         }
     });
 }
@@ -40,48 +43,55 @@ function load() {
 function save(id) {
     const titleInput = document.getElementById('title');
     const contentInput = document.getElementById('content');
-    const fileInput = document.getElementById('file');
 
     const creation = {
         title: titleInput.value,
-        content: contentInput.value,
-        file_path: fileInput.value
+        content: contentInput.value
     };
 
-    fetch(`/admin/save/${id}`, {
+    fetch(`/save/${id}`, {
         method: 'post',
         body: JSON.stringify(creation),
-        headers: { "Content-Type": "application/json" }
+        headers: { 'Content-Type': 'application/json' }
     }).then(response => {
         alert(response.ok ? 'Saved' : 'Save failed');
     });
 }
 
-function unpublish(id) {
-    fetch(`/admin/unpublish/${id}`, {
+function publish(id) {
+    fetch(`/publish/${id}`, {
         method: 'post'
     }).then(response => {
+        alert(response.ok ? 'Published' : 'Publish failed');
+
         if (!response.ok) {
-            alert('Unpublish failed');
             return;
         }
 
-        const publishForm = document.getElementById('publish');
-        publishForm.style.display = 'block';
+        const publishButton = document.getElementById('publish');
+        publishButton.style.display = 'none';
+
+        const unpublishButton = document.getElementById('unpublish');
+        unpublishButton.style.display = 'block';
+    });
+}
+
+function unpublish(id) {
+    fetch(`/unpublish/${id}`, {
+        method: 'post'
+    }).then(response => {
+        alert(response.ok ? 'Unpublished' : 'Unpublish failed');
+        
+        if (!response.ok) {
+            return;
+        }
+
+        const publishButton = document.getElementById('publish');
+        publishButton.style.display = 'block';
 
         const unpublishButton = document.getElementById('unpublish');
         unpublishButton.style.display = 'none';
     });
-}
-
-async function getCreation(id) {
-    const response = await fetch(`/creation/get/${id}`);
-    if (response.ok) {
-        const result = await response.json();
-        return result;
-    }
-
-    return null;
 }
 
 function preview() {
