@@ -1,10 +1,10 @@
 .grid-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: 10px;
     margin: 0 auto;
-    padding: 10px;
-    max-width: 1200px;
+    padding: 20px;
+    max-width: 1152px;
 }
 
 .block {
@@ -45,6 +45,10 @@ iframe {
 }
 
 @media only screen and (min-width: 768px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr;
+    }
+
     .block-1x1 {
         grid-row: span 1;
         grid-column: span 1;
@@ -63,5 +67,11 @@ iframe {
     .block-2x1 {
         grid-row: span 2;
         grid-column: span 1;
+    }
+}
+
+@media only screen and (min-width: 1152px) {
+    .grid-container {
+        grid-template-columns: 1fr 1fr 1fr;
     }
 }
