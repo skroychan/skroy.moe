@@ -21,7 +21,7 @@ class Tag(db.Model):
     id: Mapped[int] = mapped_column(db.BigInteger, primary_key=True)
     created_date: Mapped[datetime] = mapped_column(db.DateTime(timezone=False), server_default=func.now())
     name: Mapped[str] = mapped_column(db.String(256), nullable=False, index=True)
-    is_visible: Mapped[bool] = mapped_column(db.Boolean)
+    is_visible: Mapped[bool] = mapped_column(db.Boolean, nullable=False)
     creations = db.relationship('Creation', secondary=creation_tag, back_populates='tags')
 
     def __repr__(self):

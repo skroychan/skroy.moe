@@ -2,7 +2,7 @@ import { getCreation } from '../static/creation.js';
 
 function load() {
     const previewButton = document.getElementById('preview-button');
-    previewButton.addEventListener("click", preview);
+    previewButton.onclick = preview;
 
     const urlParams = new URLSearchParams(window.location.search);
     const creation_id = urlParams.get('id');
