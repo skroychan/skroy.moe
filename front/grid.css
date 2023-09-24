@@ -7,7 +7,7 @@
     max-width: 1152px;
 }
 
-.block {
+.creation {
     display: flex;
     flex-flow: column;
     background-color: #ffffff;
@@ -19,9 +19,7 @@
     padding: 20px;
 }
 
-.header {
-    border-bottom: 1px solid #eee;
-    background-color: #fafafa;
+.title {
     font-weight: bold;
 }
 
@@ -30,13 +28,16 @@
 }
 
 .footer {
+    text-align: right;
+}
+
+.footer a {
     color: #999999;
 }
 
 img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 iframe {
@@ -50,23 +51,48 @@ iframe {
     }
 
     .block-1x1 {
-        grid-row: span 1;
         grid-column: span 1;
-    }
-
-    .block-1x2 {
         grid-row: span 1;
-        grid-column: span 2;
+    }
+    
+    .block-1x2 {
+        grid-column: span 1;
+        grid-row: span 2;
     }
 
-    .block-2x2 {
-        grid-row: span 2;
-        grid-column: span 2;
+    .block-1x3 {
+        grid-column: span 1;
+        grid-row: span 3;
     }
     
     .block-2x1 {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .block-2x2 {
+        grid-column: span 2;
         grid-row: span 2;
-        grid-column: span 1;
+    }
+    
+    .block-2x3 {
+        grid-column: span 2;
+        grid-row: span 3;
+    }
+    
+    .block-3x1 {
+        grid-column: span 3;
+        grid-row: span 1;
+    }
+    
+    .block-3x2 {
+        grid-column: span 3;
+        grid-row: span 2;
+    }
+
+    .block-3x3 {
+        grid-column: span 3;
+        grid-row: span 3;
     }
 }
 

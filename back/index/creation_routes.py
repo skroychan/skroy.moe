@@ -22,7 +22,7 @@ def get_creation(id):
 
 @creations_blueprint.route('/latest', methods=['GET']) 
 def latest():
-    query = db.select(Creation).where(Creation.is_public).order_by(Creation.published_date.desc()).limit(50)
+    query = db.select(Creation).where(Creation.is_public).order_by(Creation.priority.desc(), Creation.published_date.desc()).limit(50)
     result = db.session.execute(query).all()
     creations = get_models(result)
 

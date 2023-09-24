@@ -37,6 +37,7 @@ class Creation(db.Model):
     published_date: Mapped[datetime] = mapped_column(db.DateTime(timezone=False))
     title: Mapped[str] = mapped_column(db.String(1024))
     content: Mapped[str] = mapped_column(db.Text)
+    priority: Mapped[int] = mapped_column(db.BigInteger)
     is_public: Mapped[bool] = mapped_column(db.Boolean)
     tags: Mapped[List[Tag]] = db.relationship('Tag', secondary=creation_tag, back_populates='creations', uselist=True)
 
