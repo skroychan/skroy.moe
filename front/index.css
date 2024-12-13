@@ -1,0 +1,62 @@
+#about {
+    padding: 0 50px 0 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 30px;
+}
+
+.about-block {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+#bio {
+    width: 300px;
+    text-align: center;
+}
+
+#face img {
+    border: 1px solid #999999;
+    width: 150px;
+    min-width: 150px;
+    height: 150px;
+}
+
+#links {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.logo-link {
+    padding-left: 35px;
+    min-height: 25px;
+    background-position: left center;
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+}
+
+#tumblr-logo {
+    background-image: url(static/tumblr-logo.png);
+}
+
+#bsky-logo {
+    background-image: url(static/biskie-logo.png);
+}
+
+@media only screen and (min-width: 768px) {
+    #about {
+        flex-direction: row;
+    }
+    
+    #bio {
+        text-align: right;
+        align-self: center;
+    }
+
+    #links {
+        width: 300px;
+    }
+}
